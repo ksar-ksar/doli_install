@@ -118,7 +118,8 @@ function language($lang){
 			"InstallLockNotFounded"			=> "Aucun fichier install.lock n'a été trouvé. Si il existe vous devez le supprimer manuelement",
 			"InstallLockFoundNoDeleted"		=> "Le fichier install.lock existe mais n'a pas pu être supprimé",
 			"DeleteScript"					=> "Supprimer ce script php du serveur (Recommandé)",
-			"DeleteLog"						=> "Supprimer le fichier log de ce script(Recommandé)"
+			"DeleteLog"						=> "Supprimer le fichier log de ce script(Recommandé)",
+			"AFewAdditionalOptions"			=> "Quelques options supplémentaires"
 		);
 	}else{
 		$lang_array = array(
@@ -161,12 +162,12 @@ function language($lang){
 			"InstallLockNotFounded"			=> "No install.lock file has been found. If it exist, you have to remove it manualy",
 			"InstallLockFoundNoDeleted"		=> "The install.lock file exist but not possible to delete it",
 			"DeleteScript"					=> "Delete this php script from the server (Recommended)",
-			"DeleteLog"						=> "Delete the log file of this script(Recommended)"
+			"DeleteLog"						=> "Delete the log file of this script(Recommended)",
+			"AFewAdditionalOptions"			=> "A few additional options"
 		);
 	}
 	return $lang_array;
 }
-
 
 /**
  * Show HTML header of install pages
@@ -1203,8 +1204,4 @@ if ($action == 'img'){
 		echo base64_decode("iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AwMCisRROG71gAAAQ5JREFUOMvNk71KA0EUhb85amUjKsSgPkEa41YWwcYHUHyCoLW/nWAXTZvGR9CXsLO/QQSfwEYLrVLP2tzAZp1EN4J44TLMmbPf3js/8FdhUt2k+ne+2R+wboAc2P9NNS2TBp6tSV5NgMwBZ8C856lr1UDAFrBbmO+5Vhl0l9BuK4FM6gKrPu15AqyZdJ36JiQgDeABWHRp3ccXH9+B7SzG57EVmTQDHBcgqVgCjtw79h41gHZJO0/A2n6/npKtmdQHmgUpL3jykr+fxZh9ac2kwxJk+KMFz/J+bpp0MFKRSSvAI1BLtDE8sZPE2iuwkcX4FkwKQAe4mPIlXQGXwaRl4N5PKq8ICcAHsMO/i0/KdzaZfIaieAAAAABJRU5ErkJggg==");
 		exit();
 	}
-	
-	
-	
-	
 }
