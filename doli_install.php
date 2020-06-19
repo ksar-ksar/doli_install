@@ -24,7 +24,9 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 @set_time_limit (120);
-@apache_setenv('no-gzip', 1);
+if (function_exists("apache_setenv")){
+	@apache_setenv('no-gzip', 1);
+}
 @ini_set('zlib.output_compression', 0);
 @ini_set('implicit_flush', 1);
 for ($i = 0; $i < ob_get_level(); $i++) { ob_end_flush(); }
