@@ -1,5 +1,6 @@
 <?php
 /* Copyright (C) 2020       ksar    <ksar.ksar@gmail.com>
+ * From an original idea of elarifr accedinfo.com
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
