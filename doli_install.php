@@ -38,7 +38,7 @@ ob_implicit_flush(1);
 *								Parameters								*
 *																		*
 ************************************************************************/
-define('SCRIPT_VERSION','Beta 0.0.1 Version');
+define('SCRIPT_VERSION','Alpha 0.0.2 Version');
 $github_url = 'https://github.com/Dolibarr/dolibarr/archive/develop.zip';
 $sourceforge_rss_url = 'https://sourceforge.net/projects/dolibarr/rss?path=/Dolibarr%20ERP-CRM';
 $sourceforge_url = 'https://sourceforge.net/projects/dolibarr/files/Dolibarr%%20ERP-CRM/%s/dolibarr-%s.zip/download';
@@ -64,7 +64,7 @@ function write_log($message, $log_array = ''){
 	
 	$message = date("Y-m-d H:i:s")." ".$message."\n";
 	
-	file_put_contents($log_file, $message , FILE_APPEND);
+	@file_put_contents($log_file, $message , FILE_APPEND);
 	
 	if($log_array != ''){
 		file_put_contents($log_file, print_r($log_array, true) , FILE_APPEND);
@@ -785,11 +785,6 @@ if ($action == 'redirect'){
 	
 	write_log('--- Enter in Redirect Page ---');
 	
-	//try to remove logs
-	if (isset($_POST['removelog'])){
-		@unlink ($log_file);
-	}
-	
 	//try to remove ourselves
 	if (isset($_POST['removescript'])){
 		if (@unlink (__FILE__)){
@@ -797,6 +792,11 @@ if ($action == 'redirect'){
 		}else{
 			write_log('Not possible to remove this script');
 		}
+	}
+	
+	//try to remove logs
+	if (isset($_POST['removelog'])){
+		@unlink ($log_file);
 	}
 		
 	header("Location: install/index.php");
