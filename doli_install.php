@@ -67,7 +67,7 @@ function write_log($message, $log_array = ''){
 	@file_put_contents($log_file, $message , FILE_APPEND);
 	
 	if($log_array != ''){
-		file_put_contents($log_file, print_r($log_array, true) , FILE_APPEND);
+		@file_put_contents($log_file, print_r($log_array, true) , FILE_APPEND);
 	}
 }
 
