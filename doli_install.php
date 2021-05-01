@@ -1,5 +1,6 @@
 <?php
 /* Copyright (C) 2020       ksar    <ksar.ksar@gmail.com>
+ * Copyright (C) 2021       Gaëtan MAISON    <gm@ilad.org>
  * From an original idea of elarifr accedinfo.com
  * 
  * This program is free software; you can redistribute it and/or modify
@@ -83,10 +84,10 @@ function language($lang){
 	if ($lang == 'fr'){
 		$lang_array = array(
 			"DolibarrSetup" 				=> "Installation ou Mise à jour de Dolibarr",
-			"NextStep"						=> "Etape Suivante",
+			"NextStep"						=> "Étape Suivante",
 			"SelectLanguage"				=> "Sélection de la langue",
 			"DefaultLanguage"				=> "Langue par défaut",
-			"Check"							=> "Verifications",
+			"Check"							=> "Vérifications",
 			"MiscellaneousChecks"			=> "Vérification des prérequis",
 			"PHPVersion"					=> "Version PHP",
 			"ErrorPHPVersionTooLow" 		=> "Version de PHP trop ancienne. PHP 5.5 Minimum requise. Votre Version PHP est",
@@ -100,7 +101,7 @@ function language($lang){
 			"DocRootWrit"					=> "Le répertoire d'installation peut être écrit",
 			"UpgradeDetected"				=> "Un fichier conf.php a été trouvé : <b> Mise à jour de Dolibar </b>. Version détecté",
 			"IntallNewDetected"				=> "Aucun fichier conf.php n'a été trouvé : <b> Installation Neuve de Dolibar </b>.",
-			"ChooseVersion"					=> "Choisiez la version a intaller",
+			"ChooseVersion"					=> "Choisir la version à intaller",
 			"Download"						=> "Téléchargement",
 			"ErrorNoVersionSelectec"		=> "Vous n'avez pas sélectionner de version.",
 			"UrlDownload"					=> "Adresse de téléchargement",
@@ -114,11 +115,11 @@ function language($lang){
 			"ErrorNotAZip"					=> "Le fichier téléchargé n'est pas un zip",
 			"NumbersOfDirectories"			=> "Nombre de dossiers crées",
 			"NumbersOfFiles"				=> "Nombre de fichiers crées",
-			"NoErrors"						=> "Aucune erreure lors de l'extraction",
-			"SomeErrors"					=> "Quelques erreures lors de l'extraction. Nombre d'erreurs",
+			"NoErrors"						=> "Aucune erreur lors de l'extraction",
+			"SomeErrors"					=> "Quelques erreurs lors de l'extraction. Nombre d'erreurs",
 			"RedirectToInstall"				=> "L'installation ou mise à jour est maintenant terminée. En cliquant sur \"Suivant\" vous allez être rediriger vers l'installation de Dolibarr",
 			"InstallLockDeleted"			=> "Le fichier install.lock a été trouvé et supprimé",
-			"InstallLockNotFounded"			=> "Aucun fichier install.lock n'a été trouvé. Si il existe vous devez le supprimer manuelement",
+			"InstallLockNotFounded"			=> "Aucun fichier install.lock n'a été trouvé. Si il existe vous devez le supprimer manuellement",
 			"InstallLockFoundNoDeleted"		=> "Le fichier install.lock existe mais n'a pas pu être supprimé",
 			"DeleteScript"					=> "Supprimer ce script php du serveur (Recommandé)",
 			"DeleteLog"						=> "Supprimer le fichier log de ce script(Recommandé)",
