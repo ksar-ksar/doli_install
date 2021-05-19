@@ -99,17 +99,17 @@ function language($lang){
 			"PHPMemoryTooLow"				=> "Votre mémoire maximum de session PHP est trop faible. Il est recommandé de modifier le paramètre <b>memory_limit</b> de votre fichier <b>php.ini</b> à au moins 64M octets. Elle est pour le moment définie à",
 			"ErrorDocRootNotWrit"			=> "Le répertoire d'installation ne peut être écrit",
 			"DocRootWrit"					=> "Le répertoire d'installation peut être écrit",
-			"UpgradeDetected"				=> "Un fichier conf.php a été trouvé : <b> Mise à jour de Dolibar </b>. Version détecté",
-			"IntallNewDetected"				=> "Aucun fichier conf.php n'a été trouvé : <b> Installation Neuve de Dolibar </b>.",
-			"ChooseVersion"					=> "Choisir la version à intaller",
+			"UpgradeDetected"				=> "Un fichier conf.php a été trouvé : <b> Mise à jour de Dolibarr </b>. Version détecté",
+			"IntallNewDetected"				=> "Aucun fichier conf.php n'a été trouvé : <b> Installation Neuve de Dolibarr </b>.",
+			"ChooseVersion"					=> "Choisir la version à installer",
 			"Download"						=> "Téléchargement",
-			"ErrorNoVersionSelectec"		=> "Vous n'avez pas sélectionner de version.",
+			"ErrorNoVersionSelectec"		=> "Vous n'avez pas sélectionné de version.",
 			"UrlDownload"					=> "Adresse de téléchargement",
 			"ErrorDuringDownload"			=> "Erreur pendant le téléchargement",
 			"DownloadPackage"				=> "Téléchargement du package Dolibarr Version",
 			"DownloadProgress"				=> "Progression du téléchargement",
 			"DownloadCompleted"				=> "Téléchargement terminé. Taille du package",
-			"ErrorDownloadFile"				=> "Le fichier télécharger n'est pas une archive !",
+			"ErrorDownloadFile"				=> "Le fichier téléchargé n'est pas une archive !",
 			"Install"						=> "Installer la version téléchargée",
 			"FileIsAZip"					=> "Le fichier téléchargé est bien un zip",
 			"ErrorNotAZip"					=> "Le fichier téléchargé n'est pas un zip",
@@ -117,7 +117,7 @@ function language($lang){
 			"NumbersOfFiles"				=> "Nombre de fichiers crées",
 			"NoErrors"						=> "Aucune erreur lors de l'extraction",
 			"SomeErrors"					=> "Quelques erreurs lors de l'extraction. Nombre d'erreurs",
-			"RedirectToInstall"				=> "L'installation ou mise à jour est maintenant terminée. En cliquant sur \"Suivant\" vous allez être rediriger vers l'installation de Dolibarr",
+			"RedirectToInstall"				=> "L'installation ou mise à jour est maintenant terminée. En cliquant sur \"Suivant\" vous allez être redirigé vers l'installation de Dolibarr",
 			"InstallLockDeleted"			=> "Le fichier install.lock a été trouvé et supprimé",
 			"InstallLockNotFounded"			=> "Aucun fichier install.lock n'a été trouvé. Si il existe vous devez le supprimer manuellement",
 			"InstallLockFoundNoDeleted"		=> "Le fichier install.lock existe mais n'a pas pu être supprimé",
@@ -274,11 +274,11 @@ function get_sourceforge_files($url){
 }
 
 /**
- * CURL follow redircetions event if open_basedir or safe_mode are ON
+ * CURL follow redirections event if open_basedir or safe_mode are ON
  *
- * @param	resource	$ch				Curl Ressource
+ * @param	resource	$ch				Curl Resource
  * @param	Int			$maxredirect	Max redirections
- * @return	curl_exec					Excution of CURL
+ * @return	curl_exec					Execution of CURL
  * Code from : https://www.php.net/manual/fr/function.curl-setopt.php#102121
  */
 function curl_exec_follow($ch, &$maxredirect = null) {
@@ -331,7 +331,7 @@ function curl_exec_follow($ch, &$maxredirect = null) {
 /**
  * CURL Progress function
  *
- * @param	resource	$ch				Curl Ressource
+ * @param	resource	$ch				Curl Resource
  * @param	Int			$download_size	Downloaded size
  * @param	Int			$downloaded		Downloaded 
  * @param	Int			$upload_size	Uploaded size
@@ -353,7 +353,7 @@ function progress($resource,$download_size, $downloaded, $upload_size, $uploaded
     if ( $progress > $previousProgress)
     {
         $previousProgress = $progress;
-		//update javacsript progress bar to show download progress
+		//update JavaScript progress bar to show download progress
 		echo '<script>
 		//size : '.$download_size.' downloaded : '.$downloaded.'
 		document.getElementById(\'prog\').value = '.$progress.';</script>'."\n";
@@ -547,7 +547,7 @@ if ($action == 'check'){
 		write_log('PHP Memory limit : '.$memmaxorig);
 	}
 	
-	// Check if main dir is writtable
+	// Check if main dir is writable
 	if (! is_writable($dolibarr_main_document_root)){
 		print '<img src="'.url_img('error').'" alt="Error"> '.$langs["ErrorDocRootNotWrit"]."<br>\n";
 		$checkfail=1;
@@ -635,7 +635,7 @@ if ($action == 'download'){
 		curl_setopt($ch, CURLOPT_HEADER, 0);
 		curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
 		$contents = curl_exec_follow($ch);
-		//For sourceforge need to extract the mirror
+		//For Sourceforge need to extract the mirror
 		if (preg_match('/<meta http-equiv="refresh" content="5; url=([^"]+)"/', $contents, $matches)){
 			$url_version = $matches[1];
 			write_log('New url found : '.$url_version);
@@ -810,7 +810,7 @@ if ($action == 'redirect'){
 *																		*
 ************************************************************************/
 
-//Output the css
+//Output the CSS
 if ($action == 'css'){
 	//set the content type header
 	header("Content-type: text/css");
