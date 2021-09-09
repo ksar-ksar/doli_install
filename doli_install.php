@@ -1,5 +1,5 @@
 <?php
-/* Copyright (C) 2020       ksar    <ksar.ksar@gmail.com>
+/* Copyright (C) 2020-2021       ksar    <ksar.ksar@gmail.com>
  * Copyright (C) 2021       Gaëtan MAISON    <gm@ilad.org>
  * From an original idea of elarifr accedinfo.com
  * 
