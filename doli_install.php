@@ -39,8 +39,10 @@ ob_implicit_flush(1);
 *								Parameters								*
 *																		*
 ************************************************************************/
-define('SCRIPT_VERSION','Alpha 0.0.2 Version');
+define('SCRIPT_VERSION','Beta 0.0.3 Version');
 $github_url = 'https://github.com/Dolibarr/dolibarr/archive/develop.zip';
+$github_stable = 'https://github.com/Dolibarr/dolibarr/archive/14.0.zip';
+$github_old_stable = 'https://github.com/Dolibarr/dolibarr/archive/13.0.zip';
 $sourceforge_rss_url = 'https://sourceforge.net/projects/dolibarr/rss?path=/Dolibarr%20ERP-CRM';
 $sourceforge_url = 'https://sourceforge.net/projects/dolibarr/files/Dolibarr%%20ERP-CRM/%s/dolibarr-%s.zip/download';
 $conffile = "./conf/conf.php";
@@ -571,7 +573,9 @@ if ($action == 'check'){
 	write_log('SourceForge versions found ',$sourceforge_versions);
 	echo $langs["ChooseVersion"].': </td>'."\n";
 	echo '<td><select class="flat" id="selectversion" name="selectversion">'."\n";
-	echo '<option value="dev">develop from GITHUB</option>'."\n";
+	echo '<option value="dev">Develop from GITHUB</option>'."\n";
+	echo '<option value="stable">Stable (V14) from GITHUB</option>'."\n";
+	echo '<option value="old_stable">Old Stable (V13) from GITHUB</option>'."\n";
 	foreach ($sourceforge_versions as $version){
 		echo '<option value="'.$version.'">'.$version.' from Sourceforge</option>'."\n";
 	}
@@ -587,6 +591,10 @@ if ($action == 'download'){
 	if (!empty($_POST['selectversion'])){
 		if ($_POST['selectversion'] == 'dev'){
 			$url_version = $github_url ;
+		}elseif ($_POST['selectversion'] == 'stable'){
+			$url_version = $github_stable ;
+		}elseif ($_POST['selectversion'] == 'old_stable'){
+			$url_version = $github_old_stable ;
 		}else{
 			$url_version = sprintf($sourceforge_url,$_POST['selectversion'],$_POST['selectversion']);
 		}	
@@ -684,6 +692,10 @@ if ($action == 'install'){
 		$selected_version = $_POST['selectversion'] ;
 		if ($selected_version == 'dev'){
 			$zip_directory = 'dolibarr-develop/htdocs/';
+		}elseif ($selected_version == 'stable'){
+			$zip_directory = 'dolibarr-14.0/htdocs/';
+		}elseif ($selected_version == 'old_stable'){
+			$zip_directory = 'dolibarr-13.0/htdocs/';
 		}else{
 			$zip_directory = 'dolibarr-'.$selected_version.'/htdocs/';
 		}
