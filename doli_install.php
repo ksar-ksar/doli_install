@@ -1,6 +1,6 @@
 <?php
-/* Copyright (C) 2020-2021       ksar    <ksar.ksar@gmail.com>
- * Copyright (C) 2021       Gaëtan MAISON    <gm@ilad.org>
+/* Copyright (C) 2020-2021       ksar    		<ksar.ksar@gmail.com>
+ * Copyright (C) 2021       	Gaëtan MAISON	<gm@ilad.org>
  * From an original idea of elarifr accedinfo.com
  * 
  * This program is free software; you can redistribute it and/or modify
@@ -40,9 +40,11 @@ ob_implicit_flush(1);
 *																		*
 ************************************************************************/
 define('SCRIPT_VERSION','Beta 0.0.3 Version');
+define('STABLE','14.0');
+define('OLD_STABLE','13.0');
 $github_url = 'https://github.com/Dolibarr/dolibarr/archive/develop.zip';
-$github_stable = 'https://github.com/Dolibarr/dolibarr/archive/14.0.zip';
-$github_old_stable = 'https://github.com/Dolibarr/dolibarr/archive/13.0.zip';
+$github_stable = 'https://github.com/Dolibarr/dolibarr/archive/'.STABLE.'.zip';
+$github_old_stable = 'https://github.com/Dolibarr/dolibarr/archive/'.OLD_STABLE.'.zip';
 $sourceforge_rss_url = 'https://sourceforge.net/projects/dolibarr/rss?path=/Dolibarr%20ERP-CRM';
 $sourceforge_url = 'https://sourceforge.net/projects/dolibarr/files/Dolibarr%%20ERP-CRM/%s/dolibarr-%s.zip/download';
 $conffile = "./conf/conf.php";
@@ -125,7 +127,8 @@ function language($lang){
 			"InstallLockFoundNoDeleted"		=> "Le fichier install.lock existe mais n'a pas pu être supprimé",
 			"DeleteScript"					=> "Supprimer ce script php du serveur (Recommandé)",
 			"DeleteLog"						=> "Supprimer le fichier log de ce script(Recommandé)",
-			"AFewAdditionalOptions"			=> "Quelques options supplémentaires"
+			"AFewAdditionalOptions"			=> "Quelques options supplémentaires",
+			"From"							=> "depuis"
 		);
 	}else{
 		$lang_array = array(
@@ -169,7 +172,8 @@ function language($lang){
 			"InstallLockFoundNoDeleted"		=> "The install.lock file exist but not possible to delete it",
 			"DeleteScript"					=> "Delete this php script from the server (Recommended)",
 			"DeleteLog"						=> "Delete the log file of this script(Recommended)",
-			"AFewAdditionalOptions"			=> "A few additional options"
+			"AFewAdditionalOptions"			=> "A few additional options",
+			"From"							=> "from"
 		);
 	}
 	return $lang_array;
@@ -573,11 +577,11 @@ if ($action == 'check'){
 	write_log('SourceForge versions found ',$sourceforge_versions);
 	echo $langs["ChooseVersion"].': </td>'."\n";
 	echo '<td><select class="flat" id="selectversion" name="selectversion">'."\n";
-	echo '<option value="dev">Develop from GITHUB</option>'."\n";
-	echo '<option value="stable">Stable (V14) from GITHUB</option>'."\n";
-	echo '<option value="old_stable">Old Stable (V13) from GITHUB</option>'."\n";
+	echo '<option value="dev">Develop '.$langs["From"].' GITHUB</option>'."\n";
+	echo '<option value="stable">Stable (V'.STABLE.') '.$langs["From"].' GITHUB</option>'."\n";
+	echo '<option value="old_stable">Old Stable (V'.OLD_STABLE.') '.$langs["From"].' GITHUB</option>'."\n";
 	foreach ($sourceforge_versions as $version){
-		echo '<option value="'.$version.'">'.$version.' from Sourceforge</option>'."\n";
+		echo '<option value="'.$version.'">'.$version.' '.$langs["From"].' Sourceforge</option>'."\n";
 	}
 	echo '</select></td></tr></table></div><br><br>'."\n";
 	pFooter( $checkfail, $langs, $selectlang);
@@ -693,9 +697,9 @@ if ($action == 'install'){
 		if ($selected_version == 'dev'){
 			$zip_directory = 'dolibarr-develop/htdocs/';
 		}elseif ($selected_version == 'stable'){
-			$zip_directory = 'dolibarr-14.0/htdocs/';
+			$zip_directory = 'dolibarr-'.STABLE.'/htdocs/';
 		}elseif ($selected_version == 'old_stable'){
-			$zip_directory = 'dolibarr-13.0/htdocs/';
+			$zip_directory = 'dolibarr-'.OLD_STABLE.'/htdocs/';
 		}else{
 			$zip_directory = 'dolibarr-'.$selected_version.'/htdocs/';
 		}
