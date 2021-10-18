@@ -126,7 +126,7 @@ function language($lang){
 			"InstallLockNotFounded"			=> "Aucun fichier install.lock n'a été trouvé. Si il existe vous devez le supprimer manuellement",
 			"InstallLockFoundNoDeleted"		=> "Le fichier install.lock existe mais n'a pas pu être supprimé",
 			"DeleteScript"					=> "Supprimer ce script php du serveur (Recommandé)",
-			"DeleteLog"						=> "Supprimer le fichier log de ce script(Recommandé)",
+			"DeleteLog"						=> "Supprimer le fichier log de ce script (Recommandé)",
 			"AFewAdditionalOptions"			=> "Quelques options supplémentaires",
 			"From"							=> "depuis"
 		);
@@ -171,7 +171,7 @@ function language($lang){
 			"InstallLockNotFounded"			=> "No install.lock file has been found. If it exist, you have to remove it manualy",
 			"InstallLockFoundNoDeleted"		=> "The install.lock file exist but not possible to delete it",
 			"DeleteScript"					=> "Delete this php script from the server (Recommended)",
-			"DeleteLog"						=> "Delete the log file of this script(Recommended)",
+			"DeleteLog"						=> "Delete the log file of this script (Recommended)",
 			"AFewAdditionalOptions"			=> "A few additional options",
 			"From"							=> "from"
 		);
