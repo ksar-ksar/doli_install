@@ -1,5 +1,5 @@
 <?php
-/* Copyright (C) 2020-2021       ksar    		<ksar.ksar@gmail.com>
+/* Copyright (C) 2020-2022       ksar    		<ksar.ksar@gmail.com>
  * Copyright (C) 2021       	Gaëtan MAISON	<gm@ilad.org>
  * From an original idea of elarifr accedinfo.com
  * 
@@ -40,8 +40,8 @@ ob_implicit_flush(1);
 *																		*
 ************************************************************************/
 define('SCRIPT_VERSION','Alpa 0.0.1 Version');
-define('STABLE','15.0');
-define('OLD_STABLE','14.0');
+define('STABLE','16.0');
+define('OLD_STABLE','15.0');
 $github_url = 'https://github.com/Dolibarr/dolibarr/archive/develop.zip';
 $github_stable = 'https://github.com/Dolibarr/dolibarr/archive/'.STABLE.'.zip';
 $github_old_stable = 'https://github.com/Dolibarr/dolibarr/archive/'.OLD_STABLE.'.zip';
