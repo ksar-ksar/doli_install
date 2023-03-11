@@ -39,9 +39,9 @@ ob_implicit_flush(1);
 *								Parameters								*
 *																		*
 ************************************************************************/
-define('SCRIPT_VERSION','Alpa 0.0.1 Version');
-define('STABLE','16.0');
-define('OLD_STABLE','15.0');
+define('SCRIPT_VERSION','1.0.0 Version');
+define('STABLE','17.0');
+define('OLD_STABLE','16.0');
 $github_url = 'https://github.com/Dolibarr/dolibarr/archive/develop.zip';
 $github_stable = 'https://github.com/Dolibarr/dolibarr/archive/'.STABLE.'.zip';
 $github_old_stable = 'https://github.com/Dolibarr/dolibarr/archive/'.OLD_STABLE.'.zip';
