@@ -1,5 +1,5 @@
 <?php
-/* Copyright (C) 2020-2022       ksar    		<ksar.ksar@gmail.com>
+/* Copyright (C) 2020-2023       ksar    		<ksar.ksar@gmail.com>
  * Copyright (C) 2021       	Gaëtan MAISON	<gm@ilad.org>
  * From an original idea of elarifr accedinfo.com
  * 
@@ -39,12 +39,10 @@ ob_implicit_flush(1);
 *								Parameters								*
 *																		*
 ************************************************************************/
-define('SCRIPT_VERSION','1.0.1 Version');
-define('STABLE','18.0');
-define('OLD_STABLE','17.0');
-$github_url = 'https://github.com/Dolibarr/dolibarr/archive/develop.zip';
-$github_stable = 'https://github.com/Dolibarr/dolibarr/archive/'.STABLE.'.zip';
-$github_old_stable = 'https://github.com/Dolibarr/dolibarr/archive/'.OLD_STABLE.'.zip';
+define('SCRIPT_VERSION','1.1.0 Version');
+$github_url = 'https://github.com/Dolibarr/dolibarr/archive/%s.zip';
+$github_dev = 'https://github.com/Dolibarr/dolibarr/archive/develop.zip';
+$github_api = 'https://api.github.com/repos/Dolibarr/dolibarr/branches';
 $sourceforge_rss_url = 'https://sourceforge.net/projects/dolibarr/rss?path=/Dolibarr%20ERP-CRM';
 $sourceforge_url = 'https://sourceforge.net/projects/dolibarr/files/Dolibarr%%20ERP-CRM/%s/dolibarr-%s.zip/download';
 $conffile = "./conf/conf.php";
@@ -262,6 +260,12 @@ function url_img($image){
 	return $_SERVER["PHP_SELF"].'?action=img&file='.$image ;
 }
 
+/**
+ * Get le list of versions from Sourcforge
+ *
+ * @param	string	$url			URL of the RSS field
+ * @return	array 					List of versions
+ */
 function get_sourceforge_files($url){
 
 	$context  = stream_context_create(array('http' => array('header' => 'Accept: application/xml')));
@@ -278,6 +282,42 @@ function get_sourceforge_files($url){
 	rsort($sourceforge_versions, SORT_NUMERIC );
 	return $sourceforge_versions;
 }
+
+/**
+ * Get le list of branches from GitHub
+ *
+ * @param	string	$url			URL of the github branches API
+ * @return	array 					List of versions
+ */
+function get_github_banches($url){
+	$context  = stream_context_create(array('http' => array('header' => 'User-Agent: request')));
+	$jsonResponse = file_get_contents($url, false, $context);
+	
+	// Convertir la réponse JSON en tableau associatif
+	$data = json_decode($jsonResponse, true);
+	
+	$github_versions = array();
+	// Vérifier si la conversion a réussi
+	if ($data === null) {
+		// La conversion a échoué
+		write_log('Github Branches answer was not a JSON '.$url.' '.$jsonResponse);
+	} else {
+		// La conversion a réussi
+
+		// Parcourir chaque tableau dans la liste
+		foreach ($data as $version) {
+			// Accéder aux données de chaque version
+			$found_version = $version['name'];
+			if (preg_match('/^\d+\.\d+$/', $found_version)){
+				$github_versions[] = $found_version;
+			}
+
+		}
+	}
+	rsort($github_versions, SORT_NUMERIC );
+	return $github_versions;
+}
+
 
 /**
  * CURL follow redirections event if open_basedir or safe_mode are ON
@@ -574,12 +614,15 @@ if ($action == 'check'){
 	echo '<br /><br /><div class="center">'."\n";
 	echo '<table><tr><td>'."\n";
 	$sourceforge_versions = get_sourceforge_files($sourceforge_rss_url);
+	$github_versions = get_github_banches($github_api);
 	write_log('SourceForge versions found ',$sourceforge_versions);
+	write_log('GitHub versions found ',$github_versions);
 	echo $langs["ChooseVersion"].': </td>'."\n";
 	echo '<td><select class="flat" id="selectversion" name="selectversion">'."\n";
-	echo '<option value="dev">Develop '.$langs["From"].' GITHUB</option>'."\n";
-	echo '<option value="stable">Stable (V'.STABLE.') '.$langs["From"].' GITHUB</option>'."\n";
-	echo '<option value="old_stable">Old Stable (V'.OLD_STABLE.') '.$langs["From"].' GITHUB</option>'."\n";
+	echo '<option value="develop">Develop Branch '.$langs["From"].' GITHUB</option>'."\n";
+	foreach ($github_versions as $version){
+		echo '<option value="'.$version.'">'.$version.' Branch '.$langs["From"].' GitHub</option>'."\n";
+	}
 	foreach ($sourceforge_versions as $version){
 		echo '<option value="'.$version.'">'.$version.' '.$langs["From"].' Sourceforge</option>'."\n";
 	}
@@ -593,12 +636,10 @@ if ($action == 'download'){
 	write_log('--- Enter in Download Page ---');
 	// initialize download version
 	if (!empty($_POST['selectversion'])){
-		if ($_POST['selectversion'] == 'dev'){
-			$url_version = $github_url ;
-		}elseif ($_POST['selectversion'] == 'stable'){
-			$url_version = $github_stable ;
-		}elseif ($_POST['selectversion'] == 'old_stable'){
-			$url_version = $github_old_stable ;
+		if ($_POST['selectversion'] == 'develop'){
+			$url_version = $github_dev ;
+		}elseif (preg_match('/^\d+\.\d+$/', $_POST['selectversion'])){
+			$url_version = sprintf($github_url,$_POST['selectversion']);
 		}else{
 			$url_version = sprintf($sourceforge_url,$_POST['selectversion'],$_POST['selectversion']);
 		}	
