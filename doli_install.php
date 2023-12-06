@@ -1,7 +1,8 @@
 <?php
 /* Copyright (C) 2020-2023       ksar    		<ksar.ksar@gmail.com>
  * Copyright (C) 2021       	Gaëtan MAISON	<gm@ilad.org>
- * From an original idea of elarifr accedinfo.com
+ * 
+ * 		From an original idea of elarifr / accedinfo.com
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
